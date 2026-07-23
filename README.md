@@ -48,11 +48,7 @@ TestApp/
 ## Output
 Below is the visual representation of the application running on an Android device:
 
-> [!NOTE]
-> **Screenshot Placeholder**
-> *Instructions to add screenshot: Run the app on an emulator/device, take a screenshot, and save it as `output.png` in the project root.*
-
-![App Output](output.png)
+![App Output](HelloWorld.png)
 
 ---
 *Created as part of an Android development experiment.*
