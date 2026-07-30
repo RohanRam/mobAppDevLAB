@@ -1,52 +1,65 @@
-# TestApp - Android UI Experiment
+# TestApp - Activity Lifecycle & Custom UI Experiment
 
 ## Overview
-This project is an experiment in building a modern Android application using standard Jetpack libraries. The focus is on implementing a clean, responsive UI using `ConstraintLayout` and ensuring a seamless visual experience with `Edge-to-Edge` display support.
+This project is an advanced exploration of the **Android Activity Lifecycle** and custom UI components. It demonstrates how to track activity state transitions and visualize them using a highly customized, non-standard Toast notification system.
+
+## Core Experiments
+
+### 1. Activity Lifecycle State Tracking
+The application implements all major lifecycle callback methods to demonstrate the Android Activity state machine. Each state transition triggers a notification, allowing for real-time monitoring of how the OS manages the application.
+
+*   **States Tracked**: `onCreate`, `onStart`, `onRestart`, `onResume`, `onPause`, `onStop`, `onDestroy`.
+*   **Demonstration**: Open the app, press Home, return to the app, and close it to see the sequence of states:
+    *   *Resume*: Shows "Name : Rohan Ram"
+    *   *Pause*: Shows "USN : 25MCAR0114"
+    *   *Start*: Shows "Application Started"
+
+```kotlin
+override fun onResume() {
+    super.onResume()
+    CustomToaster.show(applicationContext, "Name : Rohan Ram ", Toast.LENGTH_LONG)
+}
+```
+
+### 2. Custom Toaster Architecture
+Instead of using the standard Android `Toast`, this project implements a `CustomToaster` utility that provides a modern, branded look.
+
+*   **Positioning**: High-visibility placement at the top of the screen (`Gravity.TOP`).
+*   **Visual Design**:
+    *   **Background**: A linear gradient (`#EDE7FF` to `#FFFFFF`) with rounded corners (20dp).
+    *   **Accent**: A purple dot indicator (`#7B61FF`) for visual interest.
+    *   **Typography**: Clean `sans-serif-medium` text with optimized letter spacing.
+    *   **Depth**: Subtle elevation (6dp) for a "floating" effect.
+
+```kotlin
+// Usage in MainActivity
+CustomToaster.show(applicationContext, "Message", Toast.LENGTH_LONG)
+```
 
 ## Concept & Technology
-The application demonstrates the following core Android development concepts:
-
-*   **Jetpack Compose & Interoperability**: While the project uses XML layouts, it is built with modern Jetpack libraries (`Activity-KTX`, `AppCompat`, `ConstraintLayout`).
-*   **Edge-to-Edge Display**: Utilizing `enableEdgeToEdge()` and `WindowInsetsCompat` to draw behind system bars for a truly immersive experience.
-*   **ConstraintLayout Chains**: Implementing a vertical "packed" chain to center multiple UI elements perfectly on the screen.
-*   **R8 Optimization**: Configuration of custom keep rules in a dedicated `keepRules` directory.
-*   **Kotlin First**: Clean implementation using Kotlin for activity logic.
-
-## Scenario
-The application displays a simple user profile screen. This scenario demonstrates how to:
-1.  Center a group of text elements vertically.
-2.  Maintain hierarchy and spacing using ConstraintLayout attributes.
-3.  Handle system insets (Status Bar and Navigation Bar) dynamically.
+*   **Edge-to-Edge Display**: Drawing behind system bars for a seamless visual experience.
+*   **Layout Inflation**: Using `LayoutInflater` to dynamically inject custom XML layouts into system components.
+*   **ConstraintLayout**: Precise positioning of main UI elements using vertical packed chains.
+*   **Kotlin & Jetpack**: Built with modern Android standards and Kotlin-first logic.
 
 ## Project Structure
-The project follows a standard Android structure with a specific organization for keep rules:
-
 ```text
 TestApp/
-├── app/
-│   ├── src/
-│   │   └── main/
-│   │       ├── AndroidManifest.xml
-│   │       ├── java/com/example/testapp/
-│   │       │   └── MainActivity.kt        # Core logic & Edge-to-Edge setup
-│   │       ├── keepRules/
-│   │       │   └── rules.keep             # Custom R8/ProGuard rules
-│   │       └── res/
-│   │           ├── layout/
-│   │           │   └── activity_main.xml  # Main UI layout (ConstraintLayout)
-│   │           ├── values/
-│   │           │   ├── colors.xml         # UI Colors
-│   │           │   ├── strings.xml        # Application strings (Name, ID)
-│   │           │   └── themes.xml         # App Themes
-│   │           └── (other resource folders)
-│   ├── build.gradle.kts                   # Module-level configuration
-│   └── ...
-├── build.gradle.kts                       # Project-level configuration
-└── settings.gradle.kts                    # Project settings
+├── app/src/main/
+│   ├── java/com/example/testapp/
+│   │   ├── MainActivity.kt        # Lifecycle overrides & logic
+│   │   └── CustomToaster.kt       # Custom notification utility
+│   └── res/
+│       ├── layout/
+│       │   ├── activity_main.xml  # Primary UI
+│       │   └── layout_custom_toast.xml # Toast UI definition
+│       └── drawable/
+│           ├── bg_custom_toast.xml # Gradient background
+│           └── bg_toast_dot.xml    # Accent dot shape
 ```
 
 ## Output
-Below is the visual representation of the application running on an Android device:
+Below is the visual representation of the application:
 
 ![App Output](HelloWorld.png)
 
