@@ -61,7 +61,12 @@ TestApp/
 ## Output
 Below is the visual representation of the application:
 
-![App Output](HelloWorld.png)
+[//]: # (### Screenshot)
+
+[//]: # (![App Output]&#40;HelloWorld.png&#41;)
+
+### Video Demo
+![Custom Toaster Demo](CustomToaster.mp4)
 
 ---
 *Created as part of an Android development experiment.*
