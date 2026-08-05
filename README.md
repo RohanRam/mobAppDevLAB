@@ -1,72 +1,58 @@
-# TestApp - Activity Lifecycle & Custom UI Experiment
+# LAB 3 - FRAGMENTS: Adaptive List-Detail Flow
 
 ## Overview
-This project is an advanced exploration of the **Android Activity Lifecycle** and custom UI components. It demonstrates how to track activity state transitions and visualize them using a highly customized, non-standard Toast notification system.
+This project, **LAB 3**, explores the implementation of an adaptive **Master-Detail pattern** using Android Fragments and the `SlidingPaneLayout` component. The application demonstrates how to build a responsive UI that seamlessly transitions between different screen sizes and orientations.
 
 ## Core Experiments
 
-### 1. Activity Lifecycle State Tracking
-The application implements all major lifecycle callback methods to demonstrate the Android Activity state machine. Each state transition triggers a notification, allowing for real-time monitoring of how the OS manages the application.
+### 1. Adaptive UI with SlidingPaneLayout
+The application uses `SlidingPaneLayout` in the `MainActivity` to host a list of items and their corresponding details. This component handles the adaptive logic automatically:
+*   **Dual-Pane Mode (Tablets/Foldables)**: Displays the `ItemListFragment` and `ItemDetailFragment` side-by-side.
+*   **Single-Pane Mode (Phones)**: Displays the list fragment by default. Selecting an item "slides" in the detail fragment.
 
-*   **States Tracked**: `onCreate`, `onStart`, `onRestart`, `onResume`, `onPause`, `onStop`, `onDestroy`.
-*   **Demonstration**: Open the app, press Home, return to the app, and close it to see the sequence of states:
-    *   *Resume*: Shows "Name : Rohan Ram"
-    *   *Pause*: Shows "USN : 25MCAR0114"
-    *   *Start*: Shows "Application Started"
+### 2. Fragment-Based Architecture
+The UI is divided into two modular fragments:
+*   **ItemListFragment**: Displays a centered list of available courses with a bold heading.
+*   **ItemDetailFragment**: Displays detailed information about the selected course, with content perfectly centered.
 
-```kotlin
-override fun onResume() {
-    super.onResume()
-    CustomToaster.show(applicationContext, "Name : Rohan Ram ", Toast.LENGTH_LONG)
-}
-```
-
-### 2. Custom Toaster Architecture
-Instead of using the standard Android `Toast`, this project implements a `CustomToaster` utility that provides a modern, branded look.
-
-*   **Positioning**: High-visibility placement at the top of the screen (`Gravity.TOP`).
-*   **Visual Design**:
-    *   **Background**: A linear gradient (`#EDE7FF` to `#FFFFFF`) with rounded corners (20dp).
-    *   **Accent**: A purple dot indicator (`#7B61FF`) for visual interest.
-    *   **Typography**: Clean `sans-serif-medium` text with optimized letter spacing.
-    *   **Depth**: Subtle elevation (6dp) for a "floating" effect.
+### 3. Shared State Management (ViewModel)
+Communication between the list and detail fragments is handled through a shared `MainViewModel`. This ensures that the detail view always reflects the currently selected item without direct coupling between fragments.
 
 ```kotlin
-// Usage in MainActivity
-CustomToaster.show(applicationContext, "Message", Toast.LENGTH_LONG)
+// Selecting a course in ItemListFragment
+viewModel.selectCourse(course)
+// Opening the detail pane
+slidingPaneLayout.openPane()
 ```
 
 ## Concept & Technology
-*   **Edge-to-Edge Display**: Drawing behind system bars for a seamless visual experience.
-*   **Layout Inflation**: Using `LayoutInflater` to dynamically inject custom XML layouts into system components.
-*   **ConstraintLayout**: Precise positioning of main UI elements using vertical packed chains.
-*   **Kotlin & Jetpack**: Built with modern Android standards and Kotlin-first logic.
+*   **SlidingPaneLayout**: Modern standard for building adaptive list-detail interfaces.
+*   **ViewModel & LiveData**: Lifecycle-aware data management for fragment communication.
+*   **RecyclerView**: Efficiently displaying the master list of courses.
+*   **OnBackPressedDispatcher**: Handling custom back navigation to close the detail pane on smaller screens.
 
 ## Project Structure
 ```text
 TestApp/
 ├── app/src/main/
 │   ├── java/com/example/testapp/
-│   │   ├── MainActivity.kt        # Lifecycle overrides & logic
-│   │   └── CustomToaster.kt       # Custom notification utility
+│   │   ├── MainActivity.kt        # Adaptive navigation & pane control
+│   │   ├── ItemListFragment.kt    # Master list view
+│   │   ├── ItemDetailFragment.kt  # Detail view
+│   │   ├── CourseAdapter.kt       # RecyclerView adapter
+│   │   ├── MainViewModel.kt       # Shared state management
+│   │   └── Course.kt              # Data model
 │   └── res/
-│       ├── layout/
-│       │   ├── activity_main.xml  # Primary UI
-│       │   └── layout_custom_toast.xml # Toast UI definition
-│       └── drawable/
-│           ├── bg_custom_toast.xml # Gradient background
-│           └── bg_toast_dot.xml    # Accent dot shape
+│       └── layout/
+│           ├── activity_main.xml  # SlidingPaneLayout host
+│           ├── fragment_item_list.xml # List UI with centered heading
+│           └── fragment_item_detail.xml # Detail UI with centered text
 ```
 
-## Output
-Below is the visual representation of the application:
+## Result
+Below is the output of the "Courses" menu implemented in this lab:
 
-[//]: # (### Screenshot)
-
-[//]: # (![App Output]&#40;HelloWorld.png&#41;)
-
-### Video Demo
-![Custom Toaster Demo](CustomToaster.mp4)
+![LAB 3 Result](fragments_result.png)
 
 ---
-*Created as part of an Android development experiment.*
+*Created as part of the LAB 3 Android Fragments experiment.*
