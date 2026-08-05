@@ -1,64 +1,38 @@
 package com.example.testapp
 
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-
+import androidx.slidingpanelayout.widget.SlidingPaneLayout
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val slidingPaneLayout = findViewById<SlidingPaneLayout>(R.id.sliding_pane_layout)
+        
+        // Lock the detail pane initially if it's meant to be a list-first flow
+        slidingPaneLayout.lockMode = SlidingPaneLayout.LOCK_MODE_LOCKED_CLOSED
+
+        val backCallback = object : OnBackPressedCallback(
+            slidingPaneLayout.isSlideable && slidingPaneLayout.isOpen
+        ) {
+            override fun handleOnBackPressed() {
+                slidingPaneLayout.closePane()
+            }
         }
-    }
-    override fun onStart() {
-        super.onStart()
-        // It will show a message on the screen
-        // then onStart is invoked
-        CustomToaster.show(applicationContext, "Application Started", Toast.LENGTH_LONG)
-    }
+        onBackPressedDispatcher.addCallback(this, backCallback)
 
-    override fun onRestart() {
-        super.onRestart()
-        // It will show a message on the screen
-        // then onRestart is invoked
-        CustomToaster.show(applicationContext, "onRestart Called", Toast.LENGTH_LONG)
+        slidingPaneLayout.addPanelSlideListener(object : SlidingPaneLayout.PanelSlideListener {
+            override fun onPanelSlide(panel: View, slideOffset: Float) {}
+            override fun onPanelOpened(panel: View) {
+                backCallback.isEnabled = true
+            }
+            override fun onPanelClosed(panel: View) {
+                backCallback.isEnabled = false
+            }
+        })
     }
-
-    override fun onResume() {
-        super.onResume()
-        // It will show a message on the screen
-        // then onResume is invoked
-        CustomToaster.show(applicationContext, "Name : Rohan Ram ", Toast.LENGTH_LONG)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        // It will show a message on the screen
-        // then onPause is invoked
-        CustomToaster.show(applicationContext, "USN : 25MCAR0114", Toast.LENGTH_LONG)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        // It will show a message on the screen
-        // then onStop is invoked
-        CustomToaster.show(applicationContext, "Application Stopped", Toast.LENGTH_LONG)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // It will show a message on the screen
-        // then onDestroy is invoked
-        CustomToaster.show(applicationContext, "onDestroy Called", Toast.LENGTH_LONG)
-    }
-
 }
