@@ -1,4 +1,4 @@
-# LAB 3: Adaptive Navigation & Personalized Fragments
+# LAB 4: Adaptive Navigation & Personalized Fragments
 
 ## Overview
 This project, **LAB 3**, is a comprehensive exploration of modern Android development patterns. It implements a complete user journey starting from a **Material Design Login** screen to a **Personalized Adaptive Dashboard**. The application is designed to be fully responsive, catering to both handheld devices and large-screen formats like tablets and foldables.
