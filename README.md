@@ -1,58 +1,64 @@
-# LAB 3 - FRAGMENTS: Adaptive List-Detail Flow
+# LAB 3: Adaptive Navigation & Personalized Fragments
 
 ## Overview
-This project, **LAB 3**, explores the implementation of an adaptive **Master-Detail pattern** using Android Fragments and the `SlidingPaneLayout` component. The application demonstrates how to build a responsive UI that seamlessly transitions between different screen sizes and orientations.
+This project, **LAB 3**, is a comprehensive exploration of modern Android development patterns. It implements a complete user journey starting from a **Material Design Login** screen to a **Personalized Adaptive Dashboard**. The application is designed to be fully responsive, catering to both handheld devices and large-screen formats like tablets and foldables.
 
-## Core Experiments
+## Key Features
 
-### 1. Adaptive UI with SlidingPaneLayout
-The application uses `SlidingPaneLayout` in the `MainActivity` to host a list of items and their corresponding details. This component handles the adaptive logic automatically:
-*   **Dual-Pane Mode (Tablets/Foldables)**: Displays the `ItemListFragment` and `ItemDetailFragment` side-by-side.
-*   **Single-Pane Mode (Phones)**: Displays the list fragment by default. Selecting an item "slides" in the detail fragment.
+### 1. Secure-Style Login Flow
+The entry point of the application is a refined login screen built with Material Design components.
+*   **Validation**: Simple check ensuring username and password fields are populated.
+*   **Navigation**: Powered by the Jetpack Navigation Component with a clean backstack (the user cannot return to the login screen after entering the app).
 
-### 2. Fragment-Based Architecture
-The UI is divided into two modular fragments:
-*   **ItemListFragment**: Displays a centered list of available courses with a bold heading.
-*   **ItemDetailFragment**: Displays detailed information about the selected course, with content perfectly centered.
+### 2. Personalized Experience
+Using a shared **ViewModel** architecture, the application captures the user's name during login and carries it into the main experience.
+*   **Dynamic Greeting**: The home screen welcomes the specific user (e.g., "Hello, Rohan") with a clear color-coded text hierarchy.
 
-### 3. Shared State Management (ViewModel)
-Communication between the list and detail fragments is handled through a shared `MainViewModel`. This ensures that the detail view always reflects the currently selected item without direct coupling between fragments.
+### 3. Adaptive Master-Detail Pattern
+The core of the "Courses" module is built using `SlidingPaneLayout`, providing an industry-standard adaptive experience:
+*   **Phone (Single-Pane)**: Displays the list, then slides the detail view over it when an item is selected.
+*   **Tablet/Foldable (Dual-Pane)**: Displays both the list and the details side-by-side automatically.
 
-```kotlin
-// Selecting a course in ItemListFragment
-viewModel.selectCourse(course)
-// Opening the detail pane
-slidingPaneLayout.openPane()
-```
+### 4. Professional UI/UX Design
+The application features a modern aesthetic with:
+*   **Centered Alignment**: Content is perfectly positioned in the middle of the screen for balanced visuals.
+*   **Color Hierarchy**: Strategic use of Primary Purple for personalization and muted tones for secondary information.
+*   **Material Cards**: Course items are housed in elevated cards with interactive indicators.
 
-## Concept & Technology
-*   **SlidingPaneLayout**: Modern standard for building adaptive list-detail interfaces.
-*   **ViewModel & LiveData**: Lifecycle-aware data management for fragment communication.
-*   **RecyclerView**: Efficiently displaying the master list of courses.
-*   **OnBackPressedDispatcher**: Handling custom back navigation to close the detail pane on smaller screens.
+## Technology Stack
+*   **Fragments & Navigation**: Fully modular architecture using `NavHostFragment`.
+*   **ViewModel & LiveData**: Reactive state management for cross-fragment communication.
+*   **SlidingPaneLayout**: Native Android support for adaptive UI.
+*   **ConstraintLayout**: Advanced positioning and centering logic.
 
 ## Project Structure
 ```text
 TestApp/
 ├── app/src/main/
 │   ├── java/com/example/testapp/
-│   │   ├── MainActivity.kt        # Adaptive navigation & pane control
-│   │   ├── ItemListFragment.kt    # Master list view
-│   │   ├── ItemDetailFragment.kt  # Detail view
-│   │   ├── CourseAdapter.kt       # RecyclerView adapter
-│   │   ├── MainViewModel.kt       # Shared state management
-│   │   └── Course.kt              # Data model
+│   │   ├── MainActivity.kt        # Lightweight Navigation Host
+│   │   ├── LoginFragment.kt       # User entry & validation
+│   │   ├── MainContentFragment.kt # Host for Adaptive UI
+│   │   ├── ItemListFragment.kt    # Personalized Master List
+│   │   ├── ItemDetailFragment.kt  # Centered Detail View
+│   │   └── MainViewModel.kt       # Shared App State
 │   └── res/
+│       ├── navigation/
+│       │   └── nav_graph.xml      # App flow definition
 │       └── layout/
-│           ├── activity_main.xml  # SlidingPaneLayout host
-│           ├── fragment_item_list.xml # List UI with centered heading
-│           └── fragment_item_detail.xml # Detail UI with centered text
+│           ├── fragment_login.xml # Material Login UI
+│           ├── fragment_item_list.xml # Adaptive List UI
+│           └── fragment_item_detail.xml # Centered Details
 ```
 
-## Result
-Below is the output of the "Courses" menu implemented in this lab:
+## Output Result
+Below are the visual results of the implemented application:
 
-![LAB 3 Result](fragments_result.png)
+### Application Interface
+![Login and List View](img.png)
+
+### Adaptive Detail View
+![Detail View Result](img_1.png)
 
 ---
-*Created as part of the LAB 3 Android Fragments experiment.*
+*Created as part of the LAB 3 Android Fragments & Navigation experiment.*
