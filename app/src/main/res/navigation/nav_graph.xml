@@ -21,6 +21,12 @@
         android:id="@+id/mainContentFragment"
         android:name="com.example.testapp.MainContentFragment"
         android:label="Courses"
-        tools:layout="@layout/fragment_main_content" />
+        tools:layout="@layout/fragment_main_content">
+        <action
+            android:id="@+id/action_mainContentFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

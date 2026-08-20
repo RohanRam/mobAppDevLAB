@@ -1,64 +1,64 @@
-# LAB 3: Adaptive Navigation & Personalized Fragments
+# Android Notifications & Permissions Experiment
 
 ## Overview
-This project, **LAB 3**, is a comprehensive exploration of modern Android development patterns. It implements a complete user journey starting from a **Material Design Login** screen to a **Personalized Adaptive Dashboard**. The application is designed to be fully responsive, catering to both handheld devices and large-screen formats like tablets and foldables.
+This project demonstrates the implementation of a robust **Android Notification System**, focusing on modern permission handling (Android 13+) and channel-based alerts. The experiment integrates system-level notifications and custom visual feedback into a secure login flow.
 
 ## Key Features
 
-### 1. Secure-Style Login Flow
-The entry point of the application is a refined login screen built with Material Design components.
-*   **Validation**: Simple check ensuring username and password fields are populated.
-*   **Navigation**: Powered by the Jetpack Navigation Component with a clean backstack (the user cannot return to the login screen after entering the app).
+### 1. High-Priority Notification System
+Upon a successful login, the application triggers a high-priority system notification to provide immediate feedback:
+*   **System Notification**: A high-priority alert that appears as a Heads-up (popup) notification and then settles in the device's notification panel, stating "Login: Logged In".
+*   **Persistent Tracking**: The notification remains in the tray for the user to review until dismissed.
 
-### 2. Personalized Experience
-Using a shared **ViewModel** architecture, the application captures the user's name during login and carries it into the main experience.
-*   **Dynamic Greeting**: The home screen welcomes the specific user (e.g., "Hello, Rohan") with a clear color-coded text hierarchy.
+### 2. Runtime Permission Handling (Android 13+)
+The application includes a proactive permission management system for modern Android versions:
+*   **POST_NOTIFICATIONS**: The app checks for and requests the required notification permission on devices running Android 13 (API 33) or higher.
+*   **Permission Launcher**: Utilizes `ActivityResultContracts.RequestPermission()` for a clean, non-blocking user experience.
 
-### 3. Adaptive Master-Detail Pattern
-The core of the "Courses" module is built using `SlidingPaneLayout`, providing an industry-standard adaptive experience:
-*   **Phone (Single-Pane)**: Displays the list, then slides the detail view over it when an item is selected.
-*   **Tablet/Foldable (Dual-Pane)**: Displays both the list and the details side-by-side automatically.
-
-### 4. Professional UI/UX Design
-The application features a modern aesthetic with:
-*   **Centered Alignment**: Content is perfectly positioned in the middle of the screen for balanced visuals.
-*   **Color Hierarchy**: Strategic use of Primary Purple for personalization and muted tones for secondary information.
-*   **Material Cards**: Course items are housed in elevated cards with interactive indicators.
+### 3. Notification Channels (Android 8.0+)
+To ensure compatibility across all modern Android versions, a dedicated **Notification Channel** is established in the `MainActivity`:
+*   **Channel ID**: `login_notifications_high`
+*   **Importance**: Set to `IMPORTANCE_HIGH` to enable Heads-up (popup) notifications.
 
 ## Technology Stack
-*   **Fragments & Navigation**: Fully modular architecture using `NavHostFragment`.
-*   **ViewModel & LiveData**: Reactive state management for cross-fragment communication.
-*   **SlidingPaneLayout**: Native Android support for adaptive UI.
-*   **ConstraintLayout**: Advanced positioning and centering logic.
+*   **NotificationManagerCompat**: A Jetpack library component for consistent notification delivery.
+*   **NotificationCompat.Builder**: Advanced builder for crafting rich notification content.
+*   **Runtime Permissions API**: Handling user-granted system access.
+*   **CustomToaster**: A specialized utility for branded, centered toast notifications.
 
 ## Project Structure
+The notification logic is integrated across several key architectural points:
+
 ```text
 TestApp/
 ├── app/src/main/
 │   ├── java/com/example/testapp/
-│   │   ├── MainActivity.kt        # Lightweight Navigation Host
-│   │   ├── LoginFragment.kt       # User entry & validation
-│   │   ├── MainContentFragment.kt # Host for Adaptive UI
-│   │   ├── ItemListFragment.kt    # Personalized Master List
-│   │   ├── ItemDetailFragment.kt  # Centered Detail View
-│   │   └── MainViewModel.kt       # Shared App State
-│   └── res/
-│       ├── navigation/
-│       │   └── nav_graph.xml      # App flow definition
-│       └── layout/
-│           ├── fragment_login.xml # Material Login UI
-│           ├── fragment_item_list.xml # Adaptive List UI
-│           └── fragment_item_detail.xml # Centered Details
+│   │   ├── MainActivity.kt        # Notification Channel initialization
+│   │   └── LoginFragment.kt       # Permission logic & Notification triggers
+│   ├── AndroidManifest.xml        # POST_NOTIFICATIONS permission declaration
+│   └── res/values/
+│       └── strings.xml            # Notification title and text resources
+```
+
+## Implementation Snippet
+```kotlin
+private fun showLoginNotification() {
+    val builder = NotificationCompat.Builder(requireContext(), MainActivity.CHANNEL_ID)
+        .setSmallIcon(R.drawable.ic_launcher_foreground)
+        .setContentTitle("Login")
+        .setContentText("Logged In")
+        .setPriority(NotificationCompat.PRIORITY_HIGH) // Set to high for popup
+        .setAutoCancel(true)
+
+    NotificationManagerCompat.from(requireContext()).notify(1001, builder.build())
+}
 ```
 
 ## Output Result
-Below are the visual results of the implemented application:
+Below is the visual result of the implemented notification system:
 
-### Application Interface
-![Login and List View](img.png)
-
-### Adaptive Detail View
-![Detail View Result](img_1.png)
+![Notification System Result](img_2.png)
+![Heads-up Notification](img_3.png)
 
 ---
-*Created as part of the LAB 3 Android Fragments & Navigation experiment.*
+*Created as an experiment in Android Notification Systems and Runtime Permissions.*

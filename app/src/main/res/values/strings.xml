@@ -12,4 +12,7 @@
     <string name="login_error">Invalid username or password</string>
     <string name="welcome_hello">Hello,</string>
     <string name="available_courses">Available Courses</string>
+    <string name="login_success_toast">Logged In Successfully</string>
+    <string name="notification_title">Login</string>
+    <string name="notification_text">Logged In</string>
 </resources>
