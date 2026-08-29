@@ -48,6 +48,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val usernameEditText = view.findViewById<TextInputEditText>(R.id.usernameEditText)
         val passwordEditText = view.findViewById<TextInputEditText>(R.id.passwordEditText)
         val loginButton = view.findViewById<Button>(R.id.loginButton)
+        val enrollmentButton = view.findViewById<Button>(R.id.enrollmentButton)
+
+        enrollmentButton.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_enrollmentFragment)
+        }
 
         loginButton.setOnClickListener {
             val username = usernameEditText.text.toString()

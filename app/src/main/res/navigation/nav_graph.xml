@@ -15,7 +15,16 @@
             app:destination="@id/mainContentFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_enrollmentFragment"
+            app:destination="@id/enrollmentFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/enrollmentFragment"
+        android:name="com.example.testapp.EnrollmentFragment"
+        android:label="Course Enrollment"
+        tools:layout="@layout/fragment_enrollment" />
 
     <fragment
         android:id="@+id/mainContentFragment"

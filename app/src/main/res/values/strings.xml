@@ -15,4 +15,13 @@
     <string name="login_success_toast">Logged In Successfully</string>
     <string name="notification_title">Login</string>
     <string name="notification_text">Logged In</string>
+    <string name="enroll_title">Course Enrollment</string>
+    <string name="enroll_button_main">Course Enrollment</string>
+    <string name="enroll_name_hint">Student Full Name</string>
+    <string name="enroll_usn_hint">Student ID / USN</string>
+    <string name="enroll_program_label">Select Program:</string>
+    <string name="enroll_mca">MCA</string>
+    <string name="enroll_bca">BCA</string>
+    <string name="enroll_terms">I agree to course policies and academic integrity.</string>
+    <string name="enroll_submit">Confirm Enrollment</string>
 </resources>

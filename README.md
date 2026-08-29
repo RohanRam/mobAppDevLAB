@@ -1,64 +1,40 @@
-# Android Notifications & Permissions Experiment
+# Course Management & Enrollment System
 
 ## Overview
-This project demonstrates the implementation of a robust **Android Notification System**, focusing on modern permission handling (Android 13+) and channel-based alerts. The experiment integrates system-level notifications and custom visual feedback into a secure login flow.
+A comprehensive Android application featuring a secure-style login, high-priority notifications, and a dedicated student enrollment system.
 
-## Key Features
-
-### 1. High-Priority Notification System
-Upon a successful login, the application triggers a high-priority system notification to provide immediate feedback:
-*   **System Notification**: A high-priority alert that appears as a Heads-up (popup) notification and then settles in the device's notification panel, stating "Login: Logged In".
-*   **Persistent Tracking**: The notification remains in the tray for the user to review until dismissed.
-
-### 2. Runtime Permission Handling (Android 13+)
-The application includes a proactive permission management system for modern Android versions:
-*   **POST_NOTIFICATIONS**: The app checks for and requests the required notification permission on devices running Android 13 (API 33) or higher.
-*   **Permission Launcher**: Utilizes `ActivityResultContracts.RequestPermission()` for a clean, non-blocking user experience.
-
-### 3. Notification Channels (Android 8.0+)
-To ensure compatibility across all modern Android versions, a dedicated **Notification Channel** is established in the `MainActivity`:
-*   **Channel ID**: `login_notifications_high`
-*   **Importance**: Set to `IMPORTANCE_HIGH` to enable Heads-up (popup) notifications.
+## Core Features
+- **Material Login**: Secure entry with field validation.
+- **Priority Notifications**: Heads-up (popup) and panel-based login alerts with sound/vibration.
+- **Course Enrollment (Experiment 6)**: A thematic form using basic Views (`EditText`, `RadioGroup`, `CheckBox`, `ProgressBar`) to capture student data.
+- **Adaptive Course Dashboard**: Responsive list-detail view for tablets and phones.
 
 ## Technology Stack
-*   **NotificationManagerCompat**: A Jetpack library component for consistent notification delivery.
-*   **NotificationCompat.Builder**: Advanced builder for crafting rich notification content.
-*   **Runtime Permissions API**: Handling user-granted system access.
-*   **CustomToaster**: A specialized utility for branded, centered toast notifications.
+- Navigation Component
+- ViewModel
+- Notification Channels
+- ConstraintLayout
 
 ## Project Structure
-The notification logic is integrated across several key architectural points:
-
 ```text
 TestApp/
 ├── app/src/main/
 │   ├── java/com/example/testapp/
-│   │   ├── MainActivity.kt        # Notification Channel initialization
-│   │   └── LoginFragment.kt       # Permission logic & Notification triggers
-│   ├── AndroidManifest.xml        # POST_NOTIFICATIONS permission declaration
-│   └── res/values/
-│       └── strings.xml            # Notification title and text resources
+│   │   ├── MainActivity.kt
+│   │   ├── LoginFragment.kt
+│   │   ├── EnrollmentFragment.kt
+│   │   ├── ItemListFragment.kt
+│   │   ├── ItemDetailFragment.kt
+│   │   └── CustomToaster.kt
+│   └── res/layout/
+│       ├── fragment_login.xml
+│       ├── fragment_enrollment.xml
+│       ├── fragment_item_list.xml
+│       └── fragment_item_detail.xml
 ```
 
-## Implementation Snippet
-```kotlin
-private fun showLoginNotification() {
-    val builder = NotificationCompat.Builder(requireContext(), MainActivity.CHANNEL_ID)
-        .setSmallIcon(R.drawable.ic_launcher_foreground)
-        .setContentTitle("Login")
-        .setContentText("Logged In")
-        .setPriority(NotificationCompat.PRIORITY_HIGH) // Set to high for popup
-        .setAutoCancel(true)
-
-    NotificationManagerCompat.from(requireContext()).notify(1001, builder.build())
-}
-```
-
-## Output Result
-Below is the visual result of the implemented notification system:
-
-![Notification System Result](img_2.png)
-![Heads-up Notification](img_3.png)
+## Output Section
+![Result Screenshot](img_4.png)
 
 ---
-*Created as an experiment in Android Notification Systems and Runtime Permissions.*
+*Developed for Android Application Development.*
