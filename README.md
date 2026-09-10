@@ -16,7 +16,6 @@
 ---
 
 ## 📸 Screenshots
-*(Ensure the images `ss1`, `ss2`, `ss3`, and `ss4` are placed in the root of the project or update the paths accordingly)*
 
 <div align="center">
   <img src="ss1.png" width="220" alt="Splash/Login Screen"/>
