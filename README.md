@@ -17,7 +17,7 @@
 
 ## 📸 Screenshots
 
-<div align="center">
+<!-- <div align="center"> -->
   <img src="ss1.png" width="220" alt="Splash/Login Screen"/>
   &nbsp;&nbsp;&nbsp;
   <img src="ss2.png" width="220" alt="Main Activity - Empty"/>
@@ -25,7 +25,7 @@
   <img src="ss3.png" width="220" alt="Main Activity - Filled"/>
   &nbsp;&nbsp;&nbsp;
   <img src="ss4.png" width="220" alt="Result Activity"/>
-</div>
+<!-- </div> -->
 
 ---
 
