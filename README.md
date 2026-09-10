@@ -17,15 +17,15 @@
 
 ## 📸 Screenshots
 
-<!-- <div align="center"> -->
-  <img src="ss1.png" width="220" alt="Splash/Login Screen"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="ss2.png" width="220" alt="Main Activity - Empty"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="ss3.png" width="220" alt="Main Activity - Filled"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="ss4.png" width="220" alt="Result Activity"/>
-<!-- </div> -->
+<div align="center">
+  <img src="ss1.png" alt="Splash/Login Screen"/>
+  <br><br>
+  <img src="ss2.png" alt="Main Activity - Empty"/>
+  <br><br>
+  <img src="ss3.png" alt="Main Activity - Filled"/>
+  <br><br>
+  <img src="ss4.png" alt="Result Activity"/>
+</div>
 
 ---
 
