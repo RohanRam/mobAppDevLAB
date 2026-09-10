@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.FitLife.Splash" parent="Theme.SplashScreen">
+        <!-- Background color of the splash screen -->
+        <item name="windowSplashScreenBackground">#F7EFE7</item>
+        <!-- The icon to display -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_fitness_logo</item>
+        <!-- The theme to switch to after the splash screen is done -->
+        <item name="postSplashScreenTheme">@style/Theme.FitLife</item>
+    </style>
+
+    <style name="Theme.FitLife" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Add other custom attributes here if needed -->
+    </style>
+</resources>
