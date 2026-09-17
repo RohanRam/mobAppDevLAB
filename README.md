@@ -51,10 +51,10 @@ TestApp/
 Below is the visual result of today's implementation:
 
 ### 1. Dashboard & Login UI
-![UI Overview](aa1.png)
+![UI Overview](aa2.png)
 
 ### 2. Faculty Directory (Dynamic Avatars)
-![Dynamic Faculty Directory](aa2.png)
+![Dynamic Faculty Directory](aa1.png)
 
 ---
 *Created as part of an Advanced Android UI/UX Experiment.*
