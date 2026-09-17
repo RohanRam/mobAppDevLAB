@@ -27,6 +27,10 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list) {
             findNavController().navigate(R.id.action_mainContentFragment_to_loginFragment)
         }
 
+        view.findViewById<Button>(R.id.viewFacultyButton).setOnClickListener {
+            findNavController().navigate(R.id.action_mainContentFragment_to_instructorsFragment)
+        }
+
         val courses = listOf(
             Course(1, "Android Development", "Learn to build Android apps with Kotlin."),
             Course(2, "Web Development", "Master HTML, CSS, and JavaScript."),

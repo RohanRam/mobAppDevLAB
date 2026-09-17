@@ -36,6 +36,15 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainContentFragment_to_instructorsFragment"
+            app:destination="@id/instructorsFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/instructorsFragment"
+        android:name="com.example.testapp.InstructorsFragment"
+        android:label="Faculty Directory"
+        tools:layout="@layout/fragment_instructors" />
 
 </navigation>

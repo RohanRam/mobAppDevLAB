@@ -3,126 +3,173 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA">
+    android:background="#F2F2F7">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="24dp">
 
-        <ImageView
-            android:id="@+id/enrollHeaderImage"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@null"
-            android:src="@mipmap/ic_launcher_round"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/enrollTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:text="@string/enroll_title"
-            android:textColor="#212121"
-            android:textSize="24sp"
+            android:textColor="#1C1C1E"
+            android:textSize="34sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/enrollHeaderImage" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/studentNameInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/formCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="@string/enroll_name_hint"
-            app:layout_constraintTop_toBottomOf="@id/enrollTitleText">
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/enrollTitleText"
+            app:strokeWidth="0dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/studentNameEditText"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical"
+                android:padding="4dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/usnInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/enroll_usn_hint"
-            app:layout_constraintTop_toBottomOf="@id/studentNameInputLayout">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/studentNameInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enroll_name_hint"
+                    app:boxBackgroundColor="#FFFFFF"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:hintTextColor="#8E8E93">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/usnEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapCharacters" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/studentNameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="#1C1C1E" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:background="#C6C6C8" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/usnInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enroll_usn_hint"
+                    app:boxBackgroundColor="#FFFFFF"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:hintTextColor="#8E8E93">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/usnEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapCharacters"
+                        android:textColor="#1C1C1E" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/programLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
             android:text="@string/enroll_program_label"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:textColor="#8E8E93"
+            android:textSize="13sp"
+            android:textAllCaps="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/usnInputLayout" />
+            app:layout_constraintTop_toBottomOf="@id/formCard" />
 
-        <RadioGroup
-            android:id="@+id/programRadioGroup"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/radioCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/programLabel">
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/programLabel"
+            app:strokeWidth="0dp">
 
-            <RadioButton
-                android:id="@+id/radioMCA"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/programRadioGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/enroll_mca" />
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp">
 
-            <RadioButton
-                android:id="@+id/radioBCA"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:text="@string/enroll_bca" />
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/radioMCA"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="@string/enroll_mca"
+                    android:textColor="#1C1C1E"
+                    android:buttonTint="#007AFF" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#C6C6C8" />
+
+                <RadioButton
+                    android:id="@+id/radioBCA"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="@string/enroll_bca"
+                    android:textColor="#1C1C1E"
+                    android:buttonTint="#007AFF" />
+            </RadioGroup>
+        </com.google.android.material.card.MaterialCardView>
 
         <CheckBox
             android:id="@+id/enrollTermsCheckBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:text="@string/enroll_terms"
-            app:layout_constraintTop_toBottomOf="@id/programRadioGroup" />
+            android:textColor="#3A3A3C"
+            android:buttonTint="#007AFF"
+            app:layout_constraintTop_toBottomOf="@id/radioCard" />
 
         <ProgressBar
             android:id="@+id/enrollProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:max="100"
-            android:progress="0"
+            android:layout_height="4dp"
+            android:layout_marginTop="32dp"
+            android:progressDrawable="@drawable/bg_custom_progress"
             app:layout_constraintTop_toBottomOf="@id/enrollTermsCheckBox" />
 
         <Button
             android:id="@+id/confirmEnrollButton"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="24dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#007AFF"
             android:text="@string/enroll_submit"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:cornerRadius="20dp"
             app:layout_constraintTop_toBottomOf="@id/enrollProgressBar" />
 
         <TextView
@@ -132,7 +179,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
             android:text="@string/footer_text"
-            android:textColor="#BDBDBD"
+            android:textColor="#C7C7CC"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
