@@ -26,4 +26,10 @@
     <string name="enroll_submit">Confirm Enrollment</string>
     <string name="faculty_title">Faculty Directory</string>
     <string name="view_faculty">View Instructors</string>
+    <string name="view_portfolio">View Portfolio</string>
+    <string name="portfolio_title">Portfolio</string>
+    <string name="nav_gallery">Gallery</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_web">Web</string>
+    <string name="gallery_title">Campus Gallery</string>
 </resources>

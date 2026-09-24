@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F2F2F7"
-    android:padding="24dp">
+    android:paddingHorizontal="24dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="96dp">
 
     <TextView
         android:id="@+id/helloText"
@@ -48,10 +50,26 @@
         android:clipToPadding="false"
         android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/viewFacultyButton"
+        app:layout_constraintBottom_toTopOf="@+id/viewPortfolioButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/coursesHeading" />
+
+    <Button
+        android:id="@+id/viewPortfolioButton"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="@string/view_portfolio"
+        android:textAllCaps="false"
+        android:textColor="#007AFF"
+        android:textSize="17sp"
+        app:cornerRadius="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/viewFacultyButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/viewFacultyButton"

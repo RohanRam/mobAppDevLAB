@@ -31,6 +31,10 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list) {
             findNavController().navigate(R.id.action_mainContentFragment_to_instructorsFragment)
         }
 
+        view.findViewById<Button>(R.id.viewPortfolioButton).setOnClickListener {
+            ((parentFragment as? HomeCoursesFragment)?.parentFragment as? MainContentFragment)?.selectTab(2)
+        }
+
         val courses = listOf(
             Course(1, "Android Development", "Learn to build Android apps with Kotlin."),
             Course(2, "Web Development", "Master HTML, CSS, and JavaScript."),
@@ -43,5 +47,9 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list) {
             viewModel.selectCourse(course)
             requireActivity().findViewById<SlidingPaneLayout>(R.id.sliding_pane_layout).openPane()
         }
+    }
+
+    fun scrollToTop() {
+        view?.findViewById<RecyclerView>(R.id.recyclerView)?.smoothScrollToPosition(0)
     }
 }
