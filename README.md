@@ -64,13 +64,13 @@ Anchored to the `⋮` overflow buttons or the multi-select batch action bar (`me
 ![Portfolio WebView](webview.png)
 
 ### 2. Gallery - Options Menu
-![Gallery Options Menu](gallery_options_menu.png)
+![Gallery Options Menu](option.png)
 
 ### 3. Gallery - Context Menu
-![Gallery Context Menu](gallery_context_menu.png)
+![Gallery Context Menu](context.png)
 
 ### 4. Gallery - Popup Menu
-![Gallery Popup Menu](gallery_popup_menu.png)
+![Gallery Popup Menu](popup.png)
 
 ---
 
