@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_mainContentFragment_to_webViewFragment"
             app:destination="@id/webViewFragment" />
+        <action
+            android:id="@+id/action_mainContentFragment_to_loginHistoryFragment"
+            app:destination="@id/loginHistoryFragment" />
     </fragment>
 
     <fragment
@@ -55,5 +58,11 @@
         android:name="com.example.testapp.WebViewFragment"
         android:label="Portfolio"
         tools:layout="@layout/fragment_webview" />
+
+    <fragment
+        android:id="@+id/loginHistoryFragment"
+        android:name="com.example.testapp.LoginHistoryFragment"
+        android:label="Login History"
+        tools:layout="@layout/fragment_login_history" />
 
 </navigation>

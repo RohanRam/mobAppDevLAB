@@ -31,8 +31,8 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list) {
             findNavController().navigate(R.id.action_mainContentFragment_to_instructorsFragment)
         }
 
-        view.findViewById<Button>(R.id.viewPortfolioButton).setOnClickListener {
-            ((parentFragment as? HomeCoursesFragment)?.parentFragment as? MainContentFragment)?.selectTab(2)
+        view.findViewById<Button>(R.id.loginHistoryButton).setOnClickListener {
+            findNavController().navigate(R.id.action_mainContentFragment_to_loginHistoryFragment)
         }
 
         val courses = listOf(

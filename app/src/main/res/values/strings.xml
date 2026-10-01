@@ -32,4 +32,6 @@
     <string name="nav_home">Home</string>
     <string name="nav_web">Web</string>
     <string name="gallery_title">Campus Gallery</string>
+    <string name="preference_file_key">preference_file_key\n</string>
+    <string name="saved_username_key">saved_username_key</string>
 </resources>
