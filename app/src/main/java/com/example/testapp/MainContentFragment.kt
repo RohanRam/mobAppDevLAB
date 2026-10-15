@@ -16,6 +16,7 @@ class MainContentFragment : Fragment(R.layout.fragment_main_content) {
     private lateinit var tabGallery: ImageView
     private lateinit var tabHome: ImageView
     private lateinit var tabWeb: ImageView
+    private lateinit var tabContacts: ImageView
 
     private val activeColor = Color.parseColor("#007AFF")
     private val inactiveColor = Color.parseColor("#8E8E93")
@@ -27,6 +28,7 @@ class MainContentFragment : Fragment(R.layout.fragment_main_content) {
         tabGallery = view.findViewById(R.id.tabGallery)
         tabHome = view.findViewById(R.id.tabHome)
         tabWeb = view.findViewById(R.id.tabWeb)
+        tabContacts = view.findViewById(R.id.tabContacts)
 
         val adapter = MainPagerAdapter(this)
         viewPager.adapter = adapter
@@ -41,6 +43,7 @@ class MainContentFragment : Fragment(R.layout.fragment_main_content) {
         tabGallery.setOnClickListener { handleTabClick(0) }
         tabHome.setOnClickListener { handleTabClick(1) }
         tabWeb.setOnClickListener { handleTabClick(2) }
+        tabContacts.setOnClickListener { handleTabClick(3) }
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -69,6 +72,7 @@ class MainContentFragment : Fragment(R.layout.fragment_main_content) {
         tabGallery.imageTintList = ColorStateList.valueOf(if (selectedTab == 0) activeColor else inactiveColor)
         tabHome.imageTintList = ColorStateList.valueOf(if (selectedTab == 1) activeColor else inactiveColor)
         tabWeb.imageTintList = ColorStateList.valueOf(if (selectedTab == 2) activeColor else inactiveColor)
+        tabContacts.imageTintList = ColorStateList.valueOf(if (selectedTab == 3) activeColor else inactiveColor)
     }
 
     fun selectTab(position: Int) {
@@ -79,13 +83,14 @@ class MainContentFragment : Fragment(R.layout.fragment_main_content) {
     }
 
     private class MainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-        override fun getItemCount(): Int = 3
+        override fun getItemCount(): Int = 4
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> GalleryFragment()
                 1 -> HomeCoursesFragment()
                 2 -> WebViewFragment()
+                3 -> ContactsFragment()
                 else -> HomeCoursesFragment()
             }
         }

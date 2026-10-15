@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_mainContentFragment_to_loginHistoryFragment"
             app:destination="@id/loginHistoryFragment" />
+        <action
+            android:id="@+id/action_mainContentFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
     </fragment>
 
     <fragment
@@ -64,5 +67,11 @@
         android:name="com.example.testapp.LoginHistoryFragment"
         android:label="Login History"
         tools:layout="@layout/fragment_login_history" />
+
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.example.testapp.ContactsFragment"
+        android:label="Device Contacts"
+        tools:layout="@layout/fragment_contacts" />
 
 </navigation>

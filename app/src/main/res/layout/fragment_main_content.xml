@@ -72,6 +72,18 @@
                 android:src="@drawable/ic_web"
                 app:tint="#8E8E93" />
 
+            <ImageView
+                android:id="@+id/tabContacts"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Contacts"
+                android:padding="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_contacts"
+                app:tint="#8E8E93" />
+
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
