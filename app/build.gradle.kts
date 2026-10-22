@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+    implementation("com.google.android.gms:play-services-location:21.3.0")
     kapt(libs.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)

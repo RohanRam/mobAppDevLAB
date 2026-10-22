@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_mainContentFragment_to_contactsFragment"
             app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_mainContentFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
     </fragment>
 
     <fragment
@@ -73,5 +76,11 @@
         android:name="com.example.testapp.ContactsFragment"
         android:label="Device Contacts"
         tools:layout="@layout/fragment_contacts" />
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.testapp.MapFragment"
+        android:label="Locate Me"
+        tools:layout="@layout/fragment_map" />
 
 </navigation>

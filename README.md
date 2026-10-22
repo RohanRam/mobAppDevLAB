@@ -1,47 +1,75 @@
-# TestApp - Data Sharing via Contacts Content Provider
+# TestApp - Google Maps "Locate Me" Integration
 
-A modern Android application demonstrating inter-app data sharing and access using Android's system **Contacts Content Provider** (`ContactsContract`).
+A modern Android application demonstrating real-time geolocation retrieval using Google Play Services **Fused Location Provider** and embedding interactive **Google Maps** directly inside the app via a custom HTML WebView iframe wrapper.
 
 ---
 
-## 📱 Features & Implementation
+## 🗺️ Features & Implementation
 
-### 1. Contacts Content Provider Querying
-The application accesses device contacts by querying Android's system `ContentResolver` against `ContactsContract.CommonDataKinds.Phone.CONTENT_URI`. Contact records are retrieved asynchronously using Kotlin Coroutines on `Dispatchers.IO` to ensure smooth UI performance.
-
-```kotlin
-// Querying contacts via ContentResolver
-val uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
-val projection = arrayOf(
-    ContactsContract.CommonDataKinds.Phone._ID,
-    ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-    ContactsContract.CommonDataKinds.Phone.NUMBER
-)
-
-val cursor: Cursor? = requireContext().contentResolver.query(
-    uri,
-    projection,
-    null,
-    null,
-    ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC"
-)
-```
-
-### 2. Runtime Permissions
-To comply with modern Android security best practices, the app automatically handles runtime permissions for `READ_CONTACTS` using `ActivityResultContracts.RequestPermission()`.
+### 1. Fused Location Provider & Runtime Permissions
+The app requests runtime location permissions (`ACCESS_FINE_LOCATION` and `ACCESS_COARSE_LOCATION`) and uses `FusedLocationProviderClient` to fetch the device's current GPS coordinates asynchronously.
 
 ```kotlin
-private val requestPermissionLauncher =
-    registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-        if (isGranted) {
-            loadContacts()
-        }
+// Checking permissions and fetching current location
+private fun checkPermissionAndFetchLocation() {
+    if (ContextCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED ||
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    ) {
+        fetchLocationAndLoadMap()
+    } else {
+        requestPermissionLauncher.launch(
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+        )
     }
+}
+
+private fun fetchLocationAndLoadMap() {
+    try {
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            if (location != null) {
+                loadMap(location.latitude, location.longitude)
+            } else {
+                loadMap(37.7749, -122.4194) // Fallback default location
+            }
+        }
+    } catch (e: SecurityException) {
+        loadMap(37.7749, -122.4194)
+    }
+}
 ```
 
-### 3. iOS-Themed UI & Bottom Navigation
-- **Dedicated Tab**: Contacts is integrated as a primary tab in the floating bottom navigation bar (`MainContentFragment`).
-- **Clean Layout**: Rendered in an iOS-styled grouped `RecyclerView` displaying contact names and phone numbers.
+### 2. Embedded Google Maps via WebView Iframe
+To render Google Maps seamlessly inside the application without API key billing restrictions, the fetched latitude and longitude coordinates are injected into a responsive HTML `<iframe>` wrapper and loaded into the `WebView`.
+
+```kotlin
+// Loading embedded Google Maps inside WebView
+private fun loadMap(lat: Double, lng: Double) {
+    val html = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                html, body, iframe { width: 100%; height: 100%; margin: 0; padding: 0; border: none; }
+            </style>
+        </head>
+        <body>
+            <iframe src="https://maps.google.com/maps?q=$lat,$lng&z=15&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </body>
+        </html>
+    """.trimIndent()
+    mapWebView.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null)
+}
+```
 
 ---
 
@@ -50,4 +78,4 @@ private val requestPermissionLauncher =
 ![Output Screenshot](img.png)
 
 ---
-*Developed as part of Advanced Android Mobile Application Architecture & Content Provider Data Sharing Project.*
+*Developed as part of Advanced Android Mobile Application Architecture & Google Maps Location Integration Project.*

@@ -1,9 +1,9 @@
-# Task Tracking
+# Task Tracking - "Locate Me" Google Maps Integration
 
-- [x] Update AndroidManifest.xml with READ_CONTACTS permission <!-- id: 0 -->
-- [x] Update navigation graph (nav_graph.xml) with ContactsFragment destination <!-- id: 1 -->
-- [x] Create layout files (fragment_contacts.xml, item_contact.xml) <!-- id: 2 -->
-- [x] Create data model (ContactItem.kt) and adapter (ContactAdapter.kt) <!-- id: 3 -->
-- [x] Implement ContactsFragment.kt with permission handling and ContentProvider querying <!-- id: 4 -->
-- [x] Update MainContentFragment.kt to navigate to ContactsFragment <!-- id: 5 -->
+- [x] Add location permissions to AndroidManifest.xml <!-- id: 0 -->
+- [x] Add play-services-location dependency to app/build.gradle.kts <!-- id: 1 -->
+- [x] Add mapFragment to nav_graph.xml <!-- id: 2 -->
+- [x] Create fragment_map.xml layout <!-- id: 3 -->
+- [x] Add "Locate Me" button to fragment_item_list.xml and ItemListFragment.kt <!-- id: 4 -->
+- [x] Implement MapFragment.kt with location permissions and WebView Google Maps integration <!-- id: 5 -->
 - [x] Build project and verify compilation <!-- id: 6 -->
