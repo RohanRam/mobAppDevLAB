@@ -17,6 +17,7 @@ class MainContentFragment : Fragment(R.layout.fragment_main_content) {
     private lateinit var tabHome: ImageView
     private lateinit var tabWeb: ImageView
     private lateinit var tabContacts: ImageView
+    private lateinit var tabWeather: ImageView
 
     private val activeColor = Color.parseColor("#007AFF")
     private val inactiveColor = Color.parseColor("#8E8E93")
@@ -29,6 +30,7 @@ class MainContentFragment : Fragment(R.layout.fragment_main_content) {
         tabHome = view.findViewById(R.id.tabHome)
         tabWeb = view.findViewById(R.id.tabWeb)
         tabContacts = view.findViewById(R.id.tabContacts)
+        tabWeather = view.findViewById(R.id.tabWeather)
 
         val adapter = MainPagerAdapter(this)
         viewPager.adapter = adapter
@@ -44,6 +46,7 @@ class MainContentFragment : Fragment(R.layout.fragment_main_content) {
         tabHome.setOnClickListener { handleTabClick(1) }
         tabWeb.setOnClickListener { handleTabClick(2) }
         tabContacts.setOnClickListener { handleTabClick(3) }
+        tabWeather.setOnClickListener { handleTabClick(4) }
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -73,6 +76,7 @@ class MainContentFragment : Fragment(R.layout.fragment_main_content) {
         tabHome.imageTintList = ColorStateList.valueOf(if (selectedTab == 1) activeColor else inactiveColor)
         tabWeb.imageTintList = ColorStateList.valueOf(if (selectedTab == 2) activeColor else inactiveColor)
         tabContacts.imageTintList = ColorStateList.valueOf(if (selectedTab == 3) activeColor else inactiveColor)
+        tabWeather.imageTintList = ColorStateList.valueOf(if (selectedTab == 4) activeColor else inactiveColor)
     }
 
     fun selectTab(position: Int) {
@@ -83,7 +87,7 @@ class MainContentFragment : Fragment(R.layout.fragment_main_content) {
     }
 
     private class MainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-        override fun getItemCount(): Int = 4
+        override fun getItemCount(): Int = 5
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
@@ -91,6 +95,7 @@ class MainContentFragment : Fragment(R.layout.fragment_main_content) {
                 1 -> HomeCoursesFragment()
                 2 -> WebViewFragment()
                 3 -> ContactsFragment()
+                4 -> WeatherFragment()
                 else -> HomeCoursesFragment()
             }
         }
